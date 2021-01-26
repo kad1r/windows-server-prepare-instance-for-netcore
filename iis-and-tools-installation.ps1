@@ -44,12 +44,21 @@ choco install urlrewrite -y
 choco install isapirewrite -y
 choco install webdeploy -y
 choco install dotnet4.7.2 -y
-
-net stop w3svc
-net start w3svc
-
 choco install firefox -y
 choco install pgadmin4 -y
 choco install notepadplusplus -y
 choco install awscli -y
 
+# Move IIS to D drive
+# If you have EBS Volume you can download that script from "https://gallery.technet.microsoft.com/scriptcenter/Move-IIS-to-another-drive-99f9f741"
+& "D:\PowerShell\move_iss.ps1" "D"
+
+# Copy backup to InetSrv
+Copy-Item "D:\IISBackups\BackupName" "C:\Windows\system32\inetsrv\backup\"
+
+# Restore backup
+C:\Windows\system32\inetsrv\appcmd.exe restore backup BackupName
+
+# Restart IIS
+net stop w3svc
+net start w3svc
