@@ -3,37 +3,38 @@
 
 Set-ExecutionPolicy Bypass -Scope Process
 
-Enable-WindowsOptionalFeature -Online -FeatureName IIS-WebServerRole
-Enable-WindowsOptionalFeature -Online -FeatureName IIS-WebServer
-Enable-WindowsOptionalFeature -Online -FeatureName IIS-CommonHttpFeatures
-Enable-WindowsOptionalFeature -Online -FeatureName IIS-HttpErrors
-Enable-WindowsOptionalFeature -Online -FeatureName IIS-HttpRedirect
-Enable-WindowsOptionalFeature -Online -FeatureName IIS-DefaultDocument
-Disable-WindowsOptionalFeature -Online -FeatureName IIS-DirectoryBrowsing
-Enable-WindowsOptionalFeature -Online -FeatureName IIS-HttpCompressionStatic
-Enable-WindowsOptionalFeature -Online -FeatureName IIS-HttpCompressionDynamic
+Set-ExecutionPolicy Bypass -Scope Process
 
-Enable-WindowsOptionalFeature -Online -FeatureName IIS-HealthAndDiagnostics
-Enable-WindowsOptionalFeature -Online -FeatureName IIS-HttpLogging
-Enable-WindowsOptionalFeature -Online -FeatureName IIS-LoggingLibraries
-Enable-WindowsOptionalFeature -Online -FeatureName IIS-RequestMonitor
-Enable-WindowsOptionalFeature -Online -FeatureName IIS-HttpTracing
+Enable-WindowsOptionalFeature -Online -FeatureName IIS-WebServerRole -n
+Enable-WindowsOptionalFeature -Online -FeatureName IIS-WebServer -n
+Enable-WindowsOptionalFeature -Online -FeatureName IIS-CommonHttpFeatures -n
+Enable-WindowsOptionalFeature -Online -FeatureName IIS-HttpErrors -n
+Enable-WindowsOptionalFeature -Online -FeatureName IIS-HttpRedirect -n
+Enable-WindowsOptionalFeature -Online -FeatureName IIS-DefaultDocument -n
+Enable-WindowsOptionalFeature -Online -FeatureName IIS-HttpCompressionStatic -n
+Enable-WindowsOptionalFeature -Online -FeatureName IIS-HttpCompressionDynamic -n
+Disable-WindowsOptionalFeature -Online -FeatureName IIS-DirectoryBrowsing -n
 
-Enable-WindowsOptionalFeature -Online -FeatureName IIS-Performance
-Enable-WindowsOptionalFeature -Online -FeatureName IIS-StaticContent
+Enable-WindowsOptionalFeature -Online -FeatureName IIS-HealthAndDiagnostics -n
+Enable-WindowsOptionalFeature -Online -FeatureName IIS-HttpLogging -n
+Enable-WindowsOptionalFeature -Online -FeatureName IIS-LoggingLibraries -n
+Enable-WindowsOptionalFeature -Online -FeatureName IIS-RequestMonitor -n
+Enable-WindowsOptionalFeature -Online -FeatureName IIS-HttpTracing -n
 
-Enable-WindowsOptionalFeature -Online -FeatureName IIS-Security
-Enable-WindowsOptionalFeature -Online -FeatureName IIS-RequestFiltering
+Enable-WindowsOptionalFeature -Online -FeatureName IIS-Performance -n
+Enable-WindowsOptionalFeature -Online -FeatureName IIS-StaticContent -n
 
-Enable-WindowsOptionalFeature -Online -FeatureName IIS-ApplicationDevelopment
-Enable-WindowsOptionalFeature -online -FeatureName NetFx4Extended-ASPNET45
-Enable-WindowsOptionalFeature -Online -FeatureName IIS-NetFxExtensibility45
-Enable-WindowsOptionalFeature -Online -FeatureName IIS-ISAPIExtensions
-Enable-WindowsOptionalFeature -Online -FeatureName IIS-ISAPIFilter
-Enable-WindowsOptionalFeature -Online -FeatureName IIS-ASPNET47
+Enable-WindowsOptionalFeature -Online -FeatureName IIS-Security -n
+Enable-WindowsOptionalFeature -Online -FeatureName IIS-RequestFiltering -n
 
-Enable-WindowsOptionalFeature -Online -FeatureName IIS-WebServerManagementTools
-Enable-WindowsOptionalFeature -Online -FeatureName IIS-ManagementConsole
+Enable-WindowsOptionalFeature -Online -FeatureName IIS-ApplicationDevelopment -n
+Enable-WindowsOptionalFeature -online -FeatureName NetFx4Extended-ASPNET45 -n
+Enable-WindowsOptionalFeature -Online -FeatureName IIS-NetFxExtensibility45 -n
+Enable-WindowsOptionalFeature -Online -FeatureName IIS-ISAPIExtensions -n
+Enable-WindowsOptionalFeature -Online -FeatureName IIS-ISAPIFilter -n
+
+Enable-WindowsOptionalFeature -Online -FeatureName IIS-WebServerManagementTools -n
+Enable-WindowsOptionalFeature -Online -FeatureName IIS-ManagementConsole -n
 
 #
 # Installing choco to install .net core hosting bundle
@@ -42,12 +43,14 @@ Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManage
 choco install dotnetcore-windowshosting -y
 choco install urlrewrite -y
 choco install isapirewrite -y
+choco install iis-arr -y
 choco install webdeploy -y
-choco install dotnet4.7.2 -y
+choco install dotnet4.6 -y
 choco install firefox -y
 choco install pgadmin4 -y
 choco install notepadplusplus -y
 choco install awscli -y
+choco install 7zip.install -y
 
 # Move IIS to D drive
 # If you have EBS Volume you can download that script from "https://gallery.technet.microsoft.com/scriptcenter/Move-IIS-to-another-drive-99f9f741"
